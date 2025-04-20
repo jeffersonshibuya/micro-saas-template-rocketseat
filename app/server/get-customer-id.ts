@@ -1,6 +1,5 @@
 import "server-only";
 
-import { auth } from "@/app/lib/auth";
 import { db } from "@/app/lib/firebase";
 import stripe from "@/app/lib/stripe";
 
@@ -9,13 +8,13 @@ export async function getOrCreateCustomer(userId: string, userEmail: string) {
     const userRef = db.collection("users").doc(userId);
     const userDoc = await userRef.get();
 
-    if(!userDoc.exists) {
+    if (!userDoc.exists) {
       throw new Error("User not found");
     }
 
     const stripeCustomerId = userDoc.data()?.stripeCustomerId;
 
-    if(stripeCustomerId) {
+    if (stripeCustomerId) {
       return stripeCustomerId;
     }
 
@@ -23,10 +22,10 @@ export async function getOrCreateCustomer(userId: string, userEmail: string) {
 
     const stripeCustomer = await stripe.customers.create({
       email: userEmail,
-      ...(userName && {name: userName}),
+      ...(userName && { name: userName }),
       metadata: {
         userId,
-      }
+      },
     });
 
     await userRef.update({

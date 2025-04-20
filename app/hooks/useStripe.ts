@@ -15,7 +15,7 @@ export function useStripe() {
     loadStripeAsync();
   }, []);
 
-  async function createPaymentStripeCheckout(checkoutData: unknown) {
+  async function createPaymentStripeCheckout(checkoutData: { testId: string }) {
     if (!stripe) return;
 
     try {
@@ -37,7 +37,9 @@ export function useStripe() {
     }
   }
 
-  async function createSubscriptionStripeCheckout(checkoutData: unknown) {
+  async function createSubscriptionStripeCheckout(checkoutData: {
+    testId: string;
+  }) {
     if (!stripe) return;
 
     try {
