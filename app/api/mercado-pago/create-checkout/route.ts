@@ -26,15 +26,14 @@ export async function POST(req: NextRequest) {
           ],
           auto_return: "approved",
           back_urls: {
-            success: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercad-pago/pending`,
-            pending: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercad-pago/pending`,
-            failure: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercad-pago/pending`,
+            success: `${req.headers.get("origin"	)}/api/mercad-pago/pending`,
+            pending: `${req.headers.get("origin")}/api/mercad-pago/pending`,
+            failure: `${req.headers.get("origin")}/api/mercad-pago/pending`,
           },
           // excluded_payment_types: [
           //   {id: "debit_card"},
           // ],
           // default_payment_method_id: "visa",
-          
         }
       },
     });

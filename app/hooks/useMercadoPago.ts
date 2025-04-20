@@ -6,7 +6,7 @@ export default function useMercadoPago() {
   const router = useRouter()
 
   useEffect(() => {
-    initMercadoPago(process.env.MERCADO_PAGO_PUBLIC_KEY!)
+    initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY!)
   }, [])
 
   async function createMercadoPagoCheckout({testId, userEmail}:{testId: string, userEmail: string}) {
