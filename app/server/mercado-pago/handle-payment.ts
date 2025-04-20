@@ -6,6 +6,6 @@ export const handleMercadoPagoPayment = async (paymentData: PaymentResponse) => 
   const userEmail = metadata.user_email  
   const testId = metadata.test_id  
 
-  console.log("Pagamento com sucesso", paymentData)
+  console.log("Pagamento com sucesso", paymentData, userEmail, testId)
   
 }
