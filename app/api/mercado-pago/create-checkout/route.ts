@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
         external_reference: testId, //id do pedido por exemplo - Isso impacta na pontuação do Mercado Pago
         metadata: {
           testId, // Essa variavel é convertida para snake_case -> test_id
+          userEmail,
         },
         ...(userEmail && {payer: {email: userEmail}}),
         items: [

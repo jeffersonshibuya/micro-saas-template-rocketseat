@@ -1,6 +1,14 @@
 import { handleAuth } from "@/app/actions/handle-auth";
+import { auth } from "@/app/lib/auth";
+import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const session = await auth()
+
+  if(session) {
+    redirect('/dahsboard')
+  }
+
   return (
     <div>
       <form action={handleAuth}>
